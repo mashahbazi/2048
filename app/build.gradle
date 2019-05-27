@@ -1,0 +1,38 @@
+apply plugin: 'com.android.application'
+
+android {
+    signingConfigs {
+        config {
+            keyAlias 'mahdi'
+            keyPassword '7334244soulP'
+            storeFile file('C:/Projects/my2048/sign/2048.jks')
+            storePassword '7334244soulP'
+        }
+    }
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "com.example.my2048"
+        minSdkVersion 14
+        targetSdkVersion 28
+        versionCode 1
+        signingConfig signingConfigs.config
+        versionName "0.0.1"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
+    }
+    buildToolsVersion = '28.0.3'
+}
+
+dependencies {
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+}
