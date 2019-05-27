@@ -32,10 +32,10 @@ public abstract class CustomGestureDetector extends GestureDetector.SimpleOnGest
             } else if (e2.getX() - e1.getX() > SWIPE_MIN_DISTANCE
                     && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
                 onRightSwipe();
-            } else if (e2.getY() - e1.getY() > SWIPE_MIN_DISTANCE
+            } else if (e1.getY() - e2.getY() > SWIPE_MIN_DISTANCE
                     && Math.abs(velocityY) > SWIPE_THRESHOLD_VELOCITY) {
                 onTopSwipe();
-            } else if (e1.getY() - e2.getY() > SWIPE_MIN_DISTANCE
+            } else if (e2.getY() - e1.getY() > SWIPE_MIN_DISTANCE
                     && Math.abs(velocityY) > SWIPE_THRESHOLD_VELOCITY) {
                 onDownSwipe();
             }
