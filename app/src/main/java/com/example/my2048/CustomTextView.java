@@ -31,6 +31,8 @@ public class CustomTextView extends AppCompatTextView {
 
     public void setText(int num, int a) {
         lastNum = num;
+        int pow = MathUtils.getInstance().log(num, 2);
+        this.setBackgroundDrawable(BackgroundColors.getDrawable(this.getContext(), pow));
         this.setText(String.valueOf(num));
     }
 
@@ -40,8 +42,9 @@ public class CustomTextView extends AppCompatTextView {
                 .post(() -> {
                     if (text.toString().equals("0"))
                         super.setText("", type);
-                    else
+                    else {
                         super.setText(text, type);
+                    }
                 });
     }
 
@@ -49,11 +52,11 @@ public class CustomTextView extends AppCompatTextView {
         return lastNum;
     }
 
-    public void addNewNum(){
+    public void addNewNum() {
         int rand = MathUtils.getInstance().getRoundInt(4);
         if (rand % 4 == 0)
-            setText(4,0);
+            setText(4, 0);
         else
-            setText(2,0);
+            setText(2, 0);
     }
 }
