@@ -7,70 +7,89 @@
     tools:context=".MainActivity">
 
     <LinearLayout
+        android:id="@+id/base_parent"
         android:layout_width="400dp"
         android:layout_height="400dp"
         android:layout_gravity="center"
-        android:orientation="vertical"
-        android:background="#444141">
-        <LinearLayout
-            style="@style/row_ll">
-            <TextView
+        android:background="#444141"
+        android:clickable="true"
+        android:focusable="true"
+        android:orientation="vertical">
+
+        <LinearLayout style="@style/row_ll">
+
+            <com.example.my2048.CustomTextView
+                android:id="@+id/tv_0_0"
+                style="@style/box_tv" />
+
+            <com.example.my2048.CustomTextView
+                android:id="@+id/tv_0_1"
+                style="@style/box_tv" />
+
+            <com.example.my2048.CustomTextView
+                android:id="@+id/tv_0_2"
+                style="@style/box_tv" />
+
+            <com.example.my2048.CustomTextView
+                android:id="@+id/tv_0_3"
+                style="@style/box_tv" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/row_ll">
+
+            <com.example.my2048.CustomTextView
+                android:id="@+id/tv_1_0"
+                style="@style/box_tv" />
+
+            <com.example.my2048.CustomTextView
                 android:id="@+id/tv_1_1"
-                style="@style/box_tv"/>
-            <TextView
+                style="@style/box_tv" />
+
+            <com.example.my2048.CustomTextView
                 android:id="@+id/tv_1_2"
-                style="@style/box_tv"/>
-            <TextView
+                style="@style/box_tv" />
+
+            <com.example.my2048.CustomTextView
                 android:id="@+id/tv_1_3"
-                style="@style/box_tv"/>
-            <TextView
-                android:id="@+id/tv_1_4"
-                style="@style/box_tv"/>
+                style="@style/box_tv" />
         </LinearLayout>
-        <LinearLayout
-            style="@style/row_ll">
-            <TextView
+
+        <LinearLayout style="@style/row_ll">
+
+            <com.example.my2048.CustomTextView
+                android:id="@+id/tv_2_0"
+                style="@style/box_tv" />
+
+            <com.example.my2048.CustomTextView
                 android:id="@+id/tv_2_1"
-                style="@style/box_tv"/>
-            <TextView
+                style="@style/box_tv" />
+
+            <com.example.my2048.CustomTextView
                 android:id="@+id/tv_2_2"
-                style="@style/box_tv"/>
-            <TextView
+                style="@style/box_tv" />
+
+            <com.example.my2048.CustomTextView
                 android:id="@+id/tv_2_3"
-                style="@style/box_tv"/>
-            <TextView
-                android:id="@+id/tv_2_4"
-                style="@style/box_tv"/>
+                style="@style/box_tv" />
         </LinearLayout>
-        <LinearLayout
-            style="@style/row_ll">
-            <TextView
+
+        <LinearLayout style="@style/row_ll">
+
+            <com.example.my2048.CustomTextView
+                android:id="@+id/tv_3_0"
+                style="@style/box_tv" />
+
+            <com.example.my2048.CustomTextView
                 android:id="@+id/tv_3_1"
-                style="@style/box_tv"/>
-            <TextView
+                style="@style/box_tv" />
+
+            <com.example.my2048.CustomTextView
                 android:id="@+id/tv_3_2"
-                style="@style/box_tv"/>
-            <TextView
+                style="@style/box_tv" />
+
+            <com.example.my2048.CustomTextView
                 android:id="@+id/tv_3_3"
-                style="@style/box_tv"/>
-            <TextView
-                android:id="@+id/tv_3_4"
-                style="@style/box_tv"/>
-        </LinearLayout>
-        <LinearLayout
-            style="@style/row_ll">
-            <TextView
-                android:id="@+id/tv_4_1"
-                style="@style/box_tv"/>
-            <TextView
-                android:id="@+id/tv_4_2"
-                style="@style/box_tv"/>
-            <TextView
-                android:id="@+id/tv_4_3"
-                style="@style/box_tv"/>
-            <TextView
-                android:id="@+id/tv_4_4"
-                style="@style/box_tv"/>
+                style="@style/box_tv" />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>
