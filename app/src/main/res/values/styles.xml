@@ -29,6 +29,7 @@
         <item name="android:textColor">#ffffff</item>
         <item name="android:gravity">center</item>
         <item name="android:textSize">30sp</item>
+        <item name="android:text">@string/start_num</item>
     </style>
 
 </resources>

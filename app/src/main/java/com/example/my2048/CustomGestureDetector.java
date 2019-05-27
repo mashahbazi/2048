@@ -3,10 +3,24 @@ package com.example.my2048;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 
+import java.util.Observer;
+
 public abstract class CustomGestureDetector extends GestureDetector.SimpleOnGestureListener {
     private static final int SWIPE_MIN_DISTANCE = 120;
     private static final int SWIPE_MAX_OFF_PATH = 250;
     private static final int SWIPE_THRESHOLD_VELOCITY = 200;
+
+    int swipeType;
+    final SingleObservable<Integer> singleObservable;
+
+    CustomGestureDetector() {
+        Observer o = (o1, arg) -> {
+            if ((int) arg == 4)
+                addNewNum();
+        };
+        singleObservable = new SingleObservable<>(0);
+        singleObservable.addObserver(o);
+    }
 
     @Override
     public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX,
@@ -38,5 +52,7 @@ public abstract class CustomGestureDetector extends GestureDetector.SimpleOnGest
     abstract void onTopSwipe();
 
     abstract void onDownSwipe();
+
+    abstract void addNewNum();
 }
 
