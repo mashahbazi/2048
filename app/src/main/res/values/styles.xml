@@ -32,4 +32,13 @@
         <item name="android:text">@string/start_num</item>
     </style>
 
+    <style name="btn_iv">
+        <item name="android:layout_width">48dp</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:padding">6dp</item>
+        <item name="android:layout_margin">6dp</item>
+        <item name="android:background">#ffbf00</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+
 </resources>

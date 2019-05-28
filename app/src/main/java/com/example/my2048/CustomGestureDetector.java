@@ -6,7 +6,7 @@ import android.view.MotionEvent;
 import java.util.Observer;
 
 public abstract class CustomGestureDetector extends GestureDetector.SimpleOnGestureListener {
-    private static final int SWIPE_MIN_DISTANCE = 120;
+    private static final int SWIPE_MIN_DISTANCE = 60;
     private static final int SWIPE_MAX_OFF_PATH = 250;
     private static final int SWIPE_THRESHOLD_VELOCITY = 200;
 

@@ -9,6 +9,7 @@ import androidx.appcompat.widget.AppCompatTextView;
 
 public class CustomTextView extends AppCompatTextView {
     private int lastNum = 0;
+    private int currentNum = 0;
 
     public CustomTextView(Context context) {
         super(context);
@@ -26,11 +27,12 @@ public class CustomTextView extends AppCompatTextView {
     }
 
     private void init(Context context) {
-        lastNum = Integer.valueOf(context.getString(R.string.start_num));
+        currentNum = Integer.valueOf(context.getString(R.string.start_num));
     }
 
-    public void setText(int num, int a) {
-        lastNum = num;
+    public void setInt(int num) {
+        lastNum = currentNum;
+        currentNum = num;
         int pow = MathUtils.getInstance().log(num, 2);
         this.setBackgroundDrawable(BackgroundColors.getDrawable(this.getContext(), pow));
         this.setText(String.valueOf(num));
@@ -48,15 +50,20 @@ public class CustomTextView extends AppCompatTextView {
                 });
     }
 
-    public int getLastNum() {
-        return lastNum;
+    public int getCurrentNum() {
+        return currentNum;
     }
 
     public void addNewNum() {
-        int rand = MathUtils.getInstance().getRoundInt(4);
-        if (rand % 4 == 0)
-            setText(4, 0);
+        int randPercent = 8;
+        int rand = MathUtils.getInstance().getRoundInt(randPercent);
+        if (rand % randPercent == 0)
+            setInt(4);
         else
-            setText(2, 0);
+            setInt(2);
+    }
+
+    public void goBackNums() {
+        setInt(lastNum);
     }
 }
