@@ -1,4 +1,4 @@
-package com.example.my2048;
+package com.example.my2048.helpers;
 
 import java.util.Random;
 
@@ -11,13 +11,13 @@ public class MathUtils {
         rand = new Random();
     }
 
-    static MathUtils getInstance() {
+    public static MathUtils getInstance() {
         if (mathUtils == null)
             mathUtils = new MathUtils();
         return mathUtils;
     }
 
-    int getRoundInt(int num) {
+    public int getRoundInt(int num) {
         return rand.nextInt(num + 1);
     }
 
@@ -25,7 +25,7 @@ public class MathUtils {
         return rand.nextInt((max - min) + 1) + min;
     }
 
-    int log(int num, int base) {
+    public int log(int num, int base) {
         if (num == 0) return 0;
         return (int) (Math.log(num) / Math.log(base));
     }

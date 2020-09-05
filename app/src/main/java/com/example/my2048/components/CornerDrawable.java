@@ -1,4 +1,4 @@
-package com.example.my2048;
+package com.example.my2048.components;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -9,11 +9,11 @@ import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 
 
-class CornerDrawable extends Drawable {
+public class CornerDrawable extends Drawable {
     private Paint paint;
     private Drawable icon;
 
-    CornerDrawable(Drawable icon,int backgroundColor) {
+    public CornerDrawable(Drawable icon,int backgroundColor) {
         this.icon = icon;
         paint = new Paint();
         paint.setStyle(Paint.Style.FILL);

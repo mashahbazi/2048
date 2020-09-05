@@ -1,4 +1,4 @@
-package com.example.my2048;
+package com.example.my2048.components.cellitem;
 
 import android.content.Context;
 import android.os.Handler;
@@ -7,34 +7,38 @@ import android.util.AttributeSet;
 
 import androidx.appcompat.widget.AppCompatTextView;
 
-public class CustomTextView extends AppCompatTextView {
+import com.example.my2048.helpers.ColorHelper;
+import com.example.my2048.helpers.MathUtils;
+import com.example.my2048.R;
+
+public class CellItemView extends AppCompatTextView {
     private int lastNum = 0;
     private int currentNum = 0;
 
-    public CustomTextView(Context context) {
+    public CellItemView(Context context) {
         super(context);
         init(context);
     }
 
-    public CustomTextView(Context context, AttributeSet attrs) {
+    public CellItemView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(context);
     }
 
-    public CustomTextView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public CellItemView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(context);
     }
 
     private void init(Context context) {
-        currentNum = Integer.valueOf(context.getString(R.string.start_num));
+        currentNum = Integer.parseInt(context.getString(R.string.start_num));
     }
 
-    public void setInt(int num) {
+    public void setValue(int num) {
         lastNum = currentNum;
         currentNum = num;
         int pow = MathUtils.getInstance().log(num, 2);
-        this.setBackgroundDrawable(BackgroundColors.getDrawable(this.getContext(), pow));
+        this.setBackgroundDrawable(ColorHelper.getDrawable(this.getContext(), pow));
         this.setText(String.valueOf(num));
     }
 
@@ -58,12 +62,12 @@ public class CustomTextView extends AppCompatTextView {
         int randPercent = 8;
         int rand = MathUtils.getInstance().getRoundInt(randPercent);
         if (rand % randPercent == 0)
-            setInt(4);
+            setValue(4);
         else
-            setInt(2);
+            setValue(2);
     }
 
     public void goBackNums() {
-        setInt(lastNum);
+        setValue(lastNum);
     }
 }

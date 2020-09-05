@@ -1,137 +1,165 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical"
-    tools:context=".MainActivity">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginBottom="20dp"
+        android:layout_height="match_parent"
         android:gravity="center"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/sum_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right|end"
-            android:layout_marginEnd="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="20dp"
-            android:background="#FFBF00"
-            android:gravity="center"
-            android:padding="5dp"
-            android:text="0"
-            android:textColor="#ffffff"
-            android:textSize="30sp" />
+        android:orientation="vertical"
+        tools:context=".modules.mainactivity.MainActivity">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="right|end"
-            android:orientation="horizontal">
+            android:layout_gravity="center"
+            android:layout_marginBottom="20dp"
+            android:gravity="center"
+            android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/back_iv"
-                style="@style/btn_iv"
-                android:src="@drawable/back" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right|end"
+                android:orientation="horizontal">
 
-            <ImageView
-                android:id="@+id/restart_iv"
-                style="@style/btn_iv"
-                android:src="@drawable/restart" />
+                <ImageView
+                    android:id="@+id/back_iv"
+                    style="@style/btn_iv"
+                    android:onClick="@{()-> viewModel.restartGame()}"
+                    android:src="@drawable/text_drawable" />
+
+                <ImageView
+                    android:id="@+id/restart_iv"
+                    style="@style/btn_iv"
+                    android:src="@drawable/text_drawable" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/sum_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right|end"
+                android:layout_marginEnd="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="20dp"
+                android:background="#FFBF00"
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="@{viewModel.sumOfNum + ``}"
+                android:textColor="#ffffff"
+                android:textSize="30sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/base_parent"
+            android:layout_width="400dp"
+            android:layout_height="400dp"
+            android:layout_gravity="center"
+            android:background="#444141"
+            android:clickable="true"
+            android:focusable="true"
+            android:orientation="vertical">
+
+            <LinearLayout style="@style/row_ll">
+
+                <com.example.my2048.components.cellitem.CellItemView
+                    android:id="@+id/tv_0_0"
+                    style="@style/box_tv"
+                    app:value="@{viewModel.cellItemsLiveData[0][0]}" />
+
+                <com.example.my2048.components.cellitem.CellItemView
+                    android:id="@+id/tv_0_1"
+                    style="@style/box_tv"
+                    app:value="@{viewModel.cellItemsLiveData[0][1]}" />
+
+                <com.example.my2048.components.cellitem.CellItemView
+                    android:id="@+id/tv_0_2"
+                    style="@style/box_tv"
+                    app:value="@{viewModel.cellItemsLiveData[0][2]}" />
+
+                <com.example.my2048.components.cellitem.CellItemView
+                    android:id="@+id/tv_0_3"
+                    style="@style/box_tv"
+                    app:value="@{viewModel.cellItemsLiveData[0][3]}" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/row_ll">
+
+                <com.example.my2048.components.cellitem.CellItemView
+                    android:id="@+id/tv_1_0"
+                    style="@style/box_tv"
+                    app:value="@{viewModel.cellItemsLiveData[1][0]}" />
+
+                <com.example.my2048.components.cellitem.CellItemView
+                    android:id="@+id/tv_1_1"
+                    style="@style/box_tv"
+                    app:value="@{viewModel.cellItemsLiveData[1][1]}" />
+
+                <com.example.my2048.components.cellitem.CellItemView
+                    android:id="@+id/tv_1_2"
+                    style="@style/box_tv"
+                    app:value="@{viewModel.cellItemsLiveData[1][2]}" />
+
+                <com.example.my2048.components.cellitem.CellItemView
+                    android:id="@+id/tv_1_3"
+                    style="@style/box_tv"
+                    app:value="@{viewModel.cellItemsLiveData[1][3]}" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/row_ll">
+
+                <com.example.my2048.components.cellitem.CellItemView
+                    android:id="@+id/tv_2_0"
+                    style="@style/box_tv"
+                    app:value="@{viewModel.cellItemsLiveData[2][0]}" />
+
+                <com.example.my2048.components.cellitem.CellItemView
+                    android:id="@+id/tv_2_1"
+                    style="@style/box_tv"
+                    app:value="@{viewModel.cellItemsLiveData[2][1]}" />
+
+                <com.example.my2048.components.cellitem.CellItemView
+                    android:id="@+id/tv_2_2"
+                    style="@style/box_tv"
+                    app:value="@{viewModel.cellItemsLiveData[2][2]}" />
+
+                <com.example.my2048.components.cellitem.CellItemView
+                    android:id="@+id/tv_2_3"
+                    style="@style/box_tv"
+                    app:value="@{viewModel.cellItemsLiveData[2][3]}" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/row_ll">
+
+                <com.example.my2048.components.cellitem.CellItemView
+                    android:id="@+id/tv_3_0"
+                    style="@style/box_tv"
+                    app:value="@{viewModel.cellItemsLiveData[3][0]}" />
+
+                <com.example.my2048.components.cellitem.CellItemView
+                    android:id="@+id/tv_3_1"
+                    style="@style/box_tv"
+                    app:value="@{viewModel.cellItemsLiveData[3][1]}" />
+
+                <com.example.my2048.components.cellitem.CellItemView
+                    android:id="@+id/tv_3_2"
+                    style="@style/box_tv"
+                    app:value="@{viewModel.cellItemsLiveData[3][2]}" />
+
+                <com.example.my2048.components.cellitem.CellItemView
+                    android:id="@+id/tv_3_3"
+                    style="@style/box_tv"
+                    app:value="@{viewModel.cellItemsLiveData[3][3]}" />
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/base_parent"
-        android:layout_width="400dp"
-        android:layout_height="400dp"
-        android:layout_gravity="center"
-        android:background="#444141"
-        android:clickable="true"
-        android:focusable="true"
-        android:orientation="vertical">
+    <data>
 
-        <LinearLayout style="@style/row_ll">
-
-            <com.example.my2048.CustomTextView
-                android:id="@+id/tv_0_0"
-                style="@style/box_tv" />
-
-            <com.example.my2048.CustomTextView
-                android:id="@+id/tv_0_1"
-                style="@style/box_tv" />
-
-            <com.example.my2048.CustomTextView
-                android:id="@+id/tv_0_2"
-                style="@style/box_tv" />
-
-            <com.example.my2048.CustomTextView
-                android:id="@+id/tv_0_3"
-                style="@style/box_tv" />
-        </LinearLayout>
-
-        <LinearLayout style="@style/row_ll">
-
-            <com.example.my2048.CustomTextView
-                android:id="@+id/tv_1_0"
-                style="@style/box_tv" />
-
-            <com.example.my2048.CustomTextView
-                android:id="@+id/tv_1_1"
-                style="@style/box_tv" />
-
-            <com.example.my2048.CustomTextView
-                android:id="@+id/tv_1_2"
-                style="@style/box_tv" />
-
-            <com.example.my2048.CustomTextView
-                android:id="@+id/tv_1_3"
-                style="@style/box_tv" />
-        </LinearLayout>
-
-        <LinearLayout style="@style/row_ll">
-
-            <com.example.my2048.CustomTextView
-                android:id="@+id/tv_2_0"
-                style="@style/box_tv" />
-
-            <com.example.my2048.CustomTextView
-                android:id="@+id/tv_2_1"
-                style="@style/box_tv" />
-
-            <com.example.my2048.CustomTextView
-                android:id="@+id/tv_2_2"
-                style="@style/box_tv" />
-
-            <com.example.my2048.CustomTextView
-                android:id="@+id/tv_2_3"
-                style="@style/box_tv" />
-        </LinearLayout>
-
-        <LinearLayout style="@style/row_ll">
-
-            <com.example.my2048.CustomTextView
-                android:id="@+id/tv_3_0"
-                style="@style/box_tv" />
-
-            <com.example.my2048.CustomTextView
-                android:id="@+id/tv_3_1"
-                style="@style/box_tv" />
-
-            <com.example.my2048.CustomTextView
-                android:id="@+id/tv_3_2"
-                style="@style/box_tv" />
-
-            <com.example.my2048.CustomTextView
-                android:id="@+id/tv_3_3"
-                style="@style/box_tv" />
-        </LinearLayout>
-    </LinearLayout>
-</LinearLayout>
+        <variable
+            name="viewModel"
+            type="com.example.my2048.modules.mainactivity.MainActivityViewModel" />
+    </data>
+</layout>

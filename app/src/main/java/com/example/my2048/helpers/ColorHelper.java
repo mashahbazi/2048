@@ -1,13 +1,16 @@
-package com.example.my2048;
+package com.example.my2048.helpers;
 
 import android.content.Context;
 
 import androidx.core.content.ContextCompat;
 
-class BackgroundColors {
+import com.example.my2048.R;
+import com.example.my2048.components.CornerDrawable;
+
+public class ColorHelper {
     private static CornerDrawable[] list = new CornerDrawable[21];
 
-    static CornerDrawable getDrawable(Context context, int num) {
+    public static CornerDrawable getDrawable(Context context, int num) {
         if (list[num] != null)
             return list[num];
         else

@@ -1,19 +1,19 @@
-package com.example.my2048;
+package com.example.my2048.helpers;
 
 import java.util.Observable;
 
-class SingleObservable<T> extends Observable {
+public class SingleObservable<T> extends Observable {
     private T field;
 
-    SingleObservable(T field) {
+    public SingleObservable(T field) {
         this.field = field;
     }
 
-    T getField() {
+    public T getField() {
         return field;
     }
 
-    void setField(T field) {
+    public void setField(T field) {
         this.field = field;
         setChanged();
         notifyObservers(field);
