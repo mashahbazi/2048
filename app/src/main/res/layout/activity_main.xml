@@ -37,7 +37,7 @@
                     <ImageView
                         android:id="@+id/restart_iv"
                         style="@style/btn_iv"
-                        android:src="@drawable/text_drawable" />
+                        android:src="@drawable/ic_refresh" />
                 </LinearLayout>
 
                 <TextView
@@ -166,6 +166,7 @@
             android:background="#80ffbf00"
             android:gravity="center"
             android:orientation="vertical"
+            tools:visibility="gone"
             android:visibility="@{viewModel.gameFinishLD}">
 
             <TextView
