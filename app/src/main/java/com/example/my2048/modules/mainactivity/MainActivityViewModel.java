@@ -1,7 +1,5 @@
 package com.example.my2048.modules.mainactivity;
 
-import android.os.Handler;
-
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -27,16 +25,20 @@ public class MainActivityViewModel extends ViewModel implements CustomGestureDet
         startGame();
     }
 
-    private void startGame() {
-        addNewNum(SwipeType.TOP);
-        addNewNum(SwipeType.LEFT);
+    public void restartGame() {
+        for (CustomIntLiveData[] cellItemLiveData : cellItemsLiveData) {
+            for (CustomIntLiveData cellItem : cellItemLiveData) {
+                cellItem.setValue(0);
+            }
+        }
+        startGame();
     }
 
     @Override
     public void onLeftSwipe() {
         for (int i = 0; i < 4; i++) {
             CustomIntLiveData[] lineCellItemsLiveData = this.cellItemsLiveData[i];
-            onSwipe(lineCellItemsLiveData);
+            onSwipeALine(lineCellItemsLiveData);
         }
         addNewNum(SwipeType.LEFT);
     }
@@ -45,7 +47,7 @@ public class MainActivityViewModel extends ViewModel implements CustomGestureDet
     public void onRightSwipe() {
         for (int i = 0; i < 4; i++) {
             CustomIntLiveData[] lineCellItemsLiveData = {this.cellItemsLiveData[i][3], this.cellItemsLiveData[i][2], this.cellItemsLiveData[i][1], this.cellItemsLiveData[i][0]};
-            onSwipe(lineCellItemsLiveData);
+            onSwipeALine(lineCellItemsLiveData);
         }
         addNewNum(SwipeType.RIGHT);
     }
@@ -54,7 +56,7 @@ public class MainActivityViewModel extends ViewModel implements CustomGestureDet
     public void onTopSwipe() {
         for (int i = 0; i < 4; i++) {
             CustomIntLiveData[] lineCellItemsLiveData = {this.cellItemsLiveData[0][i], this.cellItemsLiveData[1][i], this.cellItemsLiveData[2][i], this.cellItemsLiveData[3][i]};
-            onSwipe(lineCellItemsLiveData);
+            onSwipeALine(lineCellItemsLiveData);
         }
         addNewNum(SwipeType.TOP);
     }
@@ -63,9 +65,14 @@ public class MainActivityViewModel extends ViewModel implements CustomGestureDet
     public void onDownSwipe() {
         for (int i = 0; i < 4; i++) {
             CustomIntLiveData[] lineCellItemsLiveData = {this.cellItemsLiveData[3][i], this.cellItemsLiveData[2][i], this.cellItemsLiveData[1][i], this.cellItemsLiveData[0][i]};
-            onSwipe(lineCellItemsLiveData);
+            onSwipeALine(lineCellItemsLiveData);
         }
         addNewNum(SwipeType.DOWN);
+    }
+
+    private void startGame() {
+        addNewNum(SwipeType.TOP);
+        addNewNum(SwipeType.LEFT);
     }
 
     private void addNewNum(SwipeType swipeType) {
@@ -111,7 +118,7 @@ public class MainActivityViewModel extends ViewModel implements CustomGestureDet
         }
     }
 
-    private void onSwipe(CustomIntLiveData[] lineCellItemsLiveData) {
+    private void onSwipeALine(CustomIntLiveData[] lineCellItemsLiveData) {
         for (int j = 0; j < 3; j++) {
             if (lineCellItemsLiveData[j].getValue() == 0) continue;
             for (int k = j + 1; k < 4; k++) {
@@ -155,15 +162,6 @@ public class MainActivityViewModel extends ViewModel implements CustomGestureDet
         int num = first.getValue();
         first.setValue(second.getValue());
         second.setValue(num);
-    }
-
-    public void restartGame() {
-        for (CustomIntLiveData[] cellItemLiveData : cellItemsLiveData) {
-            for (CustomIntLiveData cellItem : cellItemLiveData) {
-                cellItem.setValue(0);
-            }
-        }
-        startGame();
     }
 
     enum SwipeType {
