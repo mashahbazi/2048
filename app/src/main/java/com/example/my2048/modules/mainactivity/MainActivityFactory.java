@@ -13,7 +13,7 @@ public class MainActivityFactory extends ViewModelProvider.NewInstanceFactory {
         this.sharedPreferencesHelper = sharedPreferencesHelper;
     }
 
-
+    @SuppressWarnings("unchecked")
     @NonNull
     @Override
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
