@@ -4,6 +4,8 @@ import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.AttributeSet;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 
 import androidx.appcompat.widget.AppCompatTextView;
 
@@ -40,6 +42,14 @@ public class CellItemView extends AppCompatTextView {
         int pow = MathUtils.getInstance().log(num, 2);
         this.setBackgroundDrawable(ColorHelper.getDrawable(this.getContext(), pow));
         this.setText(String.valueOf(num));
+        if (currentNum > lastNum) {
+            this.showAnimation();
+        }
+    }
+
+    private void showAnimation() {
+        Animation animation = AnimationUtils.loadAnimation(getContext(), R.anim.bonuse_anim);
+        this.startAnimation(animation);
     }
 
     @Override
@@ -52,22 +62,5 @@ public class CellItemView extends AppCompatTextView {
                         super.setText(text, type);
                     }
                 });
-    }
-
-    public int getCurrentNum() {
-        return currentNum;
-    }
-
-    public void addNewNum() {
-        int randPercent = 8;
-        int rand = MathUtils.getInstance().getRoundInt(randPercent);
-        if (rand % randPercent == 0)
-            setValue(4);
-        else
-            setValue(2);
-    }
-
-    public void goBackNums() {
-        setValue(lastNum);
     }
 }
