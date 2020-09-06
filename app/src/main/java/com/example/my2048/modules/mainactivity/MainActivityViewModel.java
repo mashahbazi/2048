@@ -2,6 +2,7 @@ package com.example.my2048.modules.mainactivity;
 
 import android.view.View;
 
+import androidx.annotation.VisibleForTesting;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -231,7 +232,8 @@ public class MainActivityViewModel extends ViewModel implements CustomGestureDet
         return lastEmpty;
     }
 
-    private void changeViewsText(CustomIntLiveData first, CustomIntLiveData second) {
+    @VisibleForTesting
+    public void changeViewsText(CustomIntLiveData first, CustomIntLiveData second) {
         int num = first.getValue();
         first.setValue(second.getValue());
         second.setValue(num);

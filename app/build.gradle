@@ -42,12 +42,21 @@ android {
     }
 }
 
+
+def mockitoVersion = '2.19.0'
+def lifecycleVersion = '1.1.1'
+
 dependencies {
     implementation 'androidx.appcompat:appcompat:1.2.0'
     
-    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.0.9'
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.0.10'
 
     // Lifecycle components
-    implementation "android.arch.lifecycle:extensions:1.1.1"
-    annotationProcessor "android.arch.lifecycle:common-java8:1.1.1"
+    implementation "android.arch.lifecycle:extensions:$lifecycleVersion"
+    annotationProcessor "android.arch.lifecycle:common-java8:$lifecycleVersion"
+
+
+    testImplementation 'junit:junit:4.12'
+    testImplementation "org.mockito:mockito-core:$mockitoVersion"
+    testImplementation "androidx.arch.core:core-testing:2.1.0"
 }
