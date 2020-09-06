@@ -29,14 +29,15 @@
                     android:orientation="horizontal">
 
                     <ImageView
+                        android:id="@+id/restart_iv"
+                        android:onClick="@{()-> viewModel.undoLastMove()}"
+                        style="@style/btn_iv"
+                        android:src="@drawable/ic_undo" />
+
+                    <ImageView
                         android:id="@+id/back_iv"
                         style="@style/btn_iv"
                         android:onClick="@{()-> viewModel.restartGame()}"
-                        android:src="@drawable/text_drawable" />
-
-                    <ImageView
-                        android:id="@+id/restart_iv"
-                        style="@style/btn_iv"
                         android:src="@drawable/ic_refresh" />
                 </LinearLayout>
 
@@ -166,8 +167,8 @@
             android:background="#80ffbf00"
             android:gravity="center"
             android:orientation="vertical"
-            tools:visibility="gone"
-            android:visibility="@{viewModel.gameFinishLD}">
+            android:visibility="@{viewModel.gameFinishLD}"
+            tools:visibility="gone">
 
             <TextView
                 android:layout_width="match_parent"

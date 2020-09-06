@@ -5,17 +5,21 @@ import androidx.annotation.Nullable;
 import androidx.lifecycle.MutableLiveData;
 
 import java.util.Objects;
+import java.util.Optional;
 
 public class CustomIntLiveData extends MutableLiveData<Integer> {
     public CustomIntLiveData() {
         setValue(0);
     }
 
+    Integer previousValue;
+
     @Override
     public void postValue(Integer value) throws NullPointerException {
         if (value == null) {
             throw new NullPointerException("value can't be null");
         }
+        previousValue = getValue();
         super.postValue(value);
     }
 
@@ -24,12 +28,17 @@ public class CustomIntLiveData extends MutableLiveData<Integer> {
         if (value == null) {
             throw new NullPointerException("value can't be null");
         }
+        previousValue = getValue();
         super.setValue(value);
     }
 
     @NonNull
     @Override
     public Integer getValue() {
-        return Objects.requireNonNull(super.getValue());
+        return Optional.ofNullable(super.getValue()).orElse(0);
+    }
+
+    public void restorePreviousValue() {
+        postValue(previousValue);
     }
 }

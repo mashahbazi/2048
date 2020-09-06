@@ -38,6 +38,14 @@ public class MainActivityViewModel extends ViewModel implements CustomGestureDet
         startGame();
     }
 
+    public void undoLastMove(){
+        for (CustomIntLiveData[] lineCellItemsLD : cellItemsLD) {
+            for (CustomIntLiveData cellItemLD : lineCellItemsLD) {
+                cellItemLD.restorePreviousValue();
+            }
+        }
+    }
+
     @Override
     public void onLeftSwipe() {
         for (int i = 0; i < MAX_CELL_IN_ROW; i++) {
