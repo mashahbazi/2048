@@ -41,4 +41,32 @@
         <item name="android:layout_gravity">center</item>
     </style>
 
+    <style name="record_tv">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">right|end</item>
+        <item name="android:layout_marginEnd">10dp</item>
+        <item name="android:layout_marginRight">10dp</item>
+        <item name="android:layout_marginBottom">20dp</item>
+        <item name="android:background">#FFBF00</item>
+        <item name="android:gravity">center</item>
+        <item name="android:padding">5dp</item>
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:textSize">25sp</item>
+        <item name="android:layout_weight">3</item>
+    </style>
+
+    <style name="record_title_tv">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_gravity">right|end</item>
+        <item name="android:layout_marginEnd">10dp</item>
+        <item name="android:layout_marginRight">10dp</item>
+        <item name="android:layout_marginBottom">20dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:layout_weight">2</item>
+    </style>
+
 </resources>
