@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class MainActivityViewModel extends ViewModel implements CustomGestureDetector.ActionListener {
-    private static final int MAX_CELL_IN_ROW = 4;
+    public static final int MAX_CELL_IN_ROW = 4;
 
     public CustomIntLiveData[][] cellItemsLD = new CustomIntLiveData[MAX_CELL_IN_ROW][MAX_CELL_IN_ROW];
     public MutableLiveData<Long> sumOfNumLD = new MutableLiveData<>();
@@ -27,11 +27,6 @@ public class MainActivityViewModel extends ViewModel implements CustomGestureDet
 
     public MainActivityViewModel(SharedPreferencesHelper sharedPreferencesHelper) {
         this.sharedPreferencesHelper = sharedPreferencesHelper;
-        for (int i = 0; i < MAX_CELL_IN_ROW; i++) {
-            for (int j = 0; j < MAX_CELL_IN_ROW; j++) {
-                cellItemsLD[i][j] = new CustomIntLiveData();
-            }
-        }
         bestRecordLD.setValue(sharedPreferencesHelper.getBestRecord());
         startGame();
     }
@@ -42,6 +37,7 @@ public class MainActivityViewModel extends ViewModel implements CustomGestureDet
                 cellItem.setValue(0);
             }
         }
+        clearStateHistory();
         startGame();
     }
 
@@ -96,6 +92,7 @@ public class MainActivityViewModel extends ViewModel implements CustomGestureDet
             onGameFinished();
         } else {
             addNewNum(swipeType);
+            saveLastStates();
         }
     }
 
@@ -110,6 +107,12 @@ public class MainActivityViewModel extends ViewModel implements CustomGestureDet
 
     private void onGameFinished() {
         gameFinishLD.setValue(View.VISIBLE);
+        clearStateHistory();
+    }
+
+    private void clearStateHistory() {
+        sharedPreferencesHelper.restLastState();
+        sharedPreferencesHelper.setLastRecord(0L);
     }
 
     private boolean isGameFinished() {
@@ -143,10 +146,21 @@ public class MainActivityViewModel extends ViewModel implements CustomGestureDet
     }
 
     private void startGame() {
-        sumOfNumLD.setValue(0L);
+        for (int i = 0; i < MAX_CELL_IN_ROW; i++) {
+            for (int j = 0; j < MAX_CELL_IN_ROW; j++) {
+                cellItemsLD[i][j] = new CustomIntLiveData();
+                cellItemsLD[i][j].setValue(sharedPreferencesHelper.getLastStateByIndex(i, j));
+            }
+        }
+        long lastRecord = sharedPreferencesHelper.getLastRecord();
+        if (lastRecord > 0) {
+            sumOfNumLD.setValue(lastRecord);
+        } else {
+            sumOfNumLD.setValue(0L);
+            addNewNum(SwipeType.TOP);
+            addNewNum(SwipeType.LEFT);
+        }
         gameFinishLD.setValue(View.INVISIBLE);
-        addNewNum(SwipeType.TOP);
-        addNewNum(SwipeType.LEFT);
     }
 
     private void addNewNum(SwipeType swipeType) {
@@ -231,6 +245,16 @@ public class MainActivityViewModel extends ViewModel implements CustomGestureDet
         }
         return lastEmpty;
     }
+
+    private void saveLastStates() {
+        for (int i = 0; i < MAX_CELL_IN_ROW; i++) {
+            for (int j = 0; j < MAX_CELL_IN_ROW; j++) {
+                sharedPreferencesHelper.setLastStateByIndex(cellItemsLD[i][j].getValue(), i, j);
+            }
+        }
+        sharedPreferencesHelper.setLastRecord(sumOfNumLD.getValue());
+    }
+
 
     @VisibleForTesting
     public void changeViewsText(CustomIntLiveData first, CustomIntLiveData second) {
